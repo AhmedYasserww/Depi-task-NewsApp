@@ -2,19 +2,35 @@ import 'package:flutter/material.dart';
 import '../models/article_repository.dart';
 import 'article_card.dart';
 
-class ArticleList extends StatelessWidget {
-  const ArticleList({super.key});
+class ArticlesList extends StatelessWidget {
+  const ArticlesList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(20),
-      itemCount: ArticleRepository.articles.length,
-      itemBuilder: (context, index) {
-        return ArticleCard(
-          model: ArticleRepository.articles[index],
-        );
-      },
+
+    return Padding(
+
+      padding: const EdgeInsets.all(16),
+
+      child: ListView.separated(
+
+        itemBuilder: (context,index)=>ArticleCard(
+
+          article:
+          ArticlesRepository.articles[index],
+
+        ),
+
+        separatorBuilder:
+            (context,index)=>const SizedBox(height:16),
+
+        itemCount:
+        ArticlesRepository.articles.length,
+
+      ),
+
     );
+
   }
+
 }

@@ -3,88 +3,145 @@ import 'package:intl/intl.dart';
 import '../models/news_model.dart';
 
 class ArticleDetailsScreen extends StatelessWidget {
+  const ArticleDetailsScreen({super.key, required this.article});
 
-  const ArticleDetailsScreen({
-    super.key,
-    required this.model,
-  });
-
-  final NewsModel model;
+  final NewsModel article;
 
   @override
   Widget build(BuildContext context) {
 
-    String date =
-    DateFormat('yyyy-MM-dd').format(model.date);
+    String dateText =
+    DateFormat('MMM d, yyyy').format(article.date);
 
     return Scaffold(
+      body: Stack(
+        children: [
 
-      appBar: AppBar(
-        title: const Text("Details"),
-      ),
-
-      body: SingleChildScrollView(
-
-        child: Column(
-
-          crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: [
-
-            Image.asset(
-              model.image,
-              width: double.infinity,
-              height: 250,
+          Positioned.fill(
+            child: Image.asset(
+              "assets/images/backgroundDetails.jpg",
               fit: BoxFit.cover,
             ),
+          ),
 
-            Padding(
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
 
-              padding: const EdgeInsets.all(20),
+            child: Container(
 
-              child: Column(
+              height:
+              MediaQuery.of(context).size.height * 0.6,
 
-                crossAxisAlignment: CrossAxisAlignment.start,
+              padding:
+              const EdgeInsets.all(20),
 
-                children: [
+              decoration: const BoxDecoration(
 
-                  Text(
-                    model.title,
+                color: Colors.white,
 
-                    style: const TextStyle(
+                borderRadius: BorderRadius.only(
 
-                      fontSize: 24,
+                  topLeft: Radius.circular(24),
 
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  topRight: Radius.circular(24),
 
-                  const SizedBox(height: 10),
+                ),
 
-                  Text(
-                    "${model.publisher} - $date",
-
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  const Text(
-
-                    "This article talks about different topics and ideas that help people improve their lifestyle and knowledge.",
-
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
               ),
+
+              child: SingleChildScrollView(
+
+                child: Column(
+
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
+
+                  children: [
+
+                    Text(
+
+                      article.title,
+
+                      style: const TextStyle(
+
+                        fontSize: 32,
+
+                        fontWeight: FontWeight.w600,
+
+                        color: Color(0xFF231F20),
+
+                      ),
+
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    Row(
+
+                      children: [
+
+                        const CircleAvatar(
+
+                          backgroundImage: AssetImage(
+
+                              "assets/images/Harry.png"),
+
+                        ),
+
+                        const SizedBox(width: 8),
+
+                        Text(
+
+                          "${article.publisher} . $dateText",
+
+                          style: const TextStyle(
+
+                            fontSize: 12,
+
+                            color: Color(0xFF6D6265),
+
+                          ),
+
+                        ),
+
+                      ],
+
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    const Text(
+
+                      "Forests are one of the most important natural resources...",
+
+                      style: TextStyle(
+
+                        fontSize: 16,
+
+                        color: Color(0xFF231F20),
+
+                      ),
+
+                    ),
+
+                  ],
+
+                ),
+
+              ),
+
             ),
-          ],
-        ),
+
+          ),
+
+        ],
+
       ),
+
     );
+
   }
+
 }

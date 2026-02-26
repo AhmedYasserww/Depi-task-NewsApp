@@ -3,84 +3,133 @@ import '../models/news_model.dart';
 import '../views/article_details_screen.dart';
 
 class ArticleCard extends StatelessWidget {
-  const ArticleCard({super.key, required this.model});
 
-  final NewsModel model;
+  const ArticleCard({
+    super.key,
+    required this.article,
+  });
+
+  final NewsModel article;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
 
-      onTap: () {
+    return InkWell(
+
+      onTap: (){
+
         Navigator.push(
+
           context,
+
           MaterialPageRoute(
-            builder: (_) => ArticleDetailsScreen(model: model),
+
+            builder: (_)=>
+
+                ArticleDetailsScreen(
+
+                  article: article,
+
+                ),
+
           ),
+
         );
+
       },
 
-      child: Card(
+      child: Row(
 
-        margin: const EdgeInsets.only(bottom: 20),
+        crossAxisAlignment:
+        CrossAxisAlignment.start,
 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        children: [
 
-        child: Column(
+          Expanded(
 
-          crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
 
-          children: [
+              crossAxisAlignment:
+              CrossAxisAlignment.start,
 
-            ClipRRect(
+              children: [
 
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(20),
-              ),
+                Text(
 
-              child: Image.asset(
-                model.image,
-                height: 160,
-                width: double.infinity,
+                  article.title,
+
+                  maxLines: 2,
+
+                  overflow:
+                  TextOverflow.ellipsis,
+
+                  style: const TextStyle(
+
+                    fontSize:18,
+
+                    fontWeight:
+                    FontWeight.w600,
+
+                    color: Color(0xFF231F20),
+
+                  ),
+
+                ),
+
+                const SizedBox(height:4),
+
+                Text(
+
+                  article.type,
+
+                  style: const TextStyle(
+
+                    fontSize:12,
+
+                    color: Color(0xFF6D6265),
+
+                  ),
+
+                ),
+
+              ],
+
+            ),
+
+          ),
+
+          const SizedBox(width:16),
+
+          Container(
+
+            height:90,
+
+            width:112,
+
+            decoration: BoxDecoration(
+
+              borderRadius:
+              BorderRadius.circular(8),
+
+              image: DecorationImage(
+
+                image:
+                AssetImage(article.image),
+
                 fit: BoxFit.cover,
+
               ),
+
             ),
 
-            Padding(
+          ),
 
-              padding: const EdgeInsets.all(12),
+        ],
 
-              child: Column(
-
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [
-
-                  Text(
-                    model.type,
-                    style: TextStyle(
-                      color: Colors.blueGrey,
-                      fontSize: 12,
-                    ),
-                  ),
-
-                  const SizedBox(height: 6),
-
-                  Text(
-                    model.title,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
       ),
+
     );
+
   }
+
 }

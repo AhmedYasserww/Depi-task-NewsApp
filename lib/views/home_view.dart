@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../widgets/article_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,22 +8,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFE9EEFA),
         title: const Text(
-          "Articles",
+          "News",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
+            color: Color(0xFF231F20),
+            fontSize: 32,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
-
-      body: const ArticleList(),
+      body: const ArticlesList(),
     );
   }
 }

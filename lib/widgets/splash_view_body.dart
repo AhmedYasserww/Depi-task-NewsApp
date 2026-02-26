@@ -11,34 +11,50 @@ class SplashViewBody extends StatelessWidget {
 
       child: TweenAnimationBuilder(
 
-        tween:
-        Tween(begin: -200.0, end: 0.0),
+        tween: Tween(begin: 0.0,end:1.0),
 
-        duration:
-        const Duration(seconds: 2),
+        duration: const Duration(seconds:2),
 
-        builder: (context, value, child) {
+        curve: Curves.easeInOut,
 
-          return Transform.translate(
+        builder:(context,value,child){
 
-            offset: Offset(0, value),
+          return Opacity(
 
-            child: child,
+            opacity:value,
+
+            child: Transform.scale(
+
+              scale:value,
+
+              child: child,
+
+            ),
+
           );
+
         },
 
         child: const Text(
 
-          "My News",
+          "News",
 
           style: TextStyle(
 
-            fontSize: 48,
+            fontSize:64,
 
-            fontWeight: FontWeight.bold,
+            fontWeight:FontWeight.w600,
+
+            color: Color(0xFF2D5BD0),
+
           ),
+
         ),
+
       ),
+
     );
+
   }
+
 }
